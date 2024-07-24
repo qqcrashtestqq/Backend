@@ -4,7 +4,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { Op } from 'sequelize';
 import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
-import { AppError } from 'src/common/errors';
+import { AppError } from 'src/common/constants/errors';
 
 @Injectable()
 export class UserService {
