@@ -7,6 +7,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import configurations from '../configurations';
 import { User } from 'src/user/entities/user.entity';
 import { AuthModule } from 'src/auth/auth.module';
+import { AuthService } from 'src/auth/auth.service';
 
 @Module({
   imports: [
@@ -33,6 +34,6 @@ import { AuthModule } from 'src/auth/auth.module';
     AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, AuthService],
 })
 export class AppModule {}

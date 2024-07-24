@@ -16,7 +16,7 @@ export class UserService {
     return bcrypt.hash(password, 10);
   }
   // user search
-  async userByEmail(email: string, user_name: string) {
+  async userByEmail(email: string, user_name?: string) {
     return this.userRepository.findOne({
       where: {
         [Op.or]: [{ email: email }, { user_name: user_name }],
