@@ -1,3 +1,4 @@
+// app.module.ts
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -7,7 +8,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import configurations from '../configurations';
 import { User } from 'src/user/entities/user.entity';
 import { AuthModule } from 'src/auth/auth.module';
-import { AuthService } from 'src/auth/auth.service';
+import { TokenModule } from 'src/token/token.module';
 
 @Module({
   imports: [
@@ -32,8 +33,9 @@ import { AuthService } from 'src/auth/auth.service';
     }),
     UserModule,
     AuthModule,
+    TokenModule,
   ],
   controllers: [AppController],
-  providers: [AppService, AuthService],
+  providers: [AppService],
 })
 export class AppModule {}
