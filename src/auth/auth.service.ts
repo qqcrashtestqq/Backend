@@ -22,7 +22,11 @@ export class AuthService {
       existUser.password,
     );
     if (!validatePassword) throw new BadRequestException(AppError.WRONG_DATA);
-    const token = await this.tokenService.generateJwtToken(dto.email);
+    const userDate = {
+      name: existUser.first_name,
+      email: existUser.email,
+    };
+    const token = await this.tokenService.generateJwtToken(userDate);
     return { ...existUser, token };
   }
 }

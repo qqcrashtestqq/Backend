@@ -5,6 +5,7 @@ import { Op } from 'sequelize';
 import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
 import { AppError } from 'src/common/constants/errors';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
@@ -35,5 +36,24 @@ export class UserService {
       password: dto.password,
     });
     return dto;
+  }
+
+  async publicUser(email: string) {
+    return this.userRepository.findOne({
+      where: { email },
+      attributes: { exclude: ['password'] },
+    });
+  }
+
+  // update user
+  async updateUser(email: string, dto: UpdateUserDto) {
+    await this.userRepository.update(dto, { where: { email } });
+    return dto;
+  }
+
+  // detele user
+  async deleteUser(email: string) {
+    await this.userRepository.destroy({ where: { email } });
+    return true;
   }
 }
